@@ -47,7 +47,7 @@ public interface EventService {
 	 * @param event
 	 * @return
 	 */
-	public Event updateEvent(int id, Event event);
+	public Event updateEvent(Long id, Event event);
 
 	/**
 	 * get an event
@@ -55,7 +55,7 @@ public interface EventService {
 	 * @param id
 	 * @return
 	 */
-	public Event getEvent(int id);
+	public Event getEvent(Long id);
 
 	/**
 	 * delete an event
@@ -63,5 +63,5 @@ public interface EventService {
 	 * @param id
 	 * @return
 	 */
-	public void deleteEvent(int id);
+	public void deleteEvent(Long id);
 }

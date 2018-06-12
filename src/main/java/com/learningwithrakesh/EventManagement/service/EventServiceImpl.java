@@ -58,7 +58,7 @@ public class EventServiceImpl implements EventService {
 	 * 
 	 */
 	@Override
-	public Event updateEvent(int id, Event event) {
+	public Event updateEvent(Long id, Event event) {
 		/**
 		 * Set Event event properties that user can update
 		 */
@@ -72,7 +72,7 @@ public class EventServiceImpl implements EventService {
 	 * 
 	 */
 	@Override
-	public Event getEvent(int id) {
+	public Event getEvent(Long id) {
 		System.out.println(this.eventRepo.getOne(id).toString());
 		return this.eventRepo.getOne(id);
 	}
@@ -81,7 +81,7 @@ public class EventServiceImpl implements EventService {
 	 * 
 	 */
 	@Override
-	public void deleteEvent(int id) {
+	public void deleteEvent(Long id) {
 		this.eventRepo.deleteById(id);
 	}
 

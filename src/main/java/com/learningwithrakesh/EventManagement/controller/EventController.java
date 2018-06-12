@@ -75,7 +75,7 @@ public class EventController {
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Event updateEvent(@RequestBody Event event, @PathVariable("id") int id) {
+	public Event updateEvent(@RequestBody Event event, @PathVariable("id") Long id) {
 		return this.eventService.updateEvent(id, event);
 	}
 
@@ -87,7 +87,7 @@ public class EventController {
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Event getEvent(@PathVariable("id") int id) {
+	public Event getEvent(@PathVariable("id") Long id) {
 		System.out.println("Id to be queried" + id);
 		return this.eventService.getEvent(id);
 	}
@@ -100,7 +100,7 @@ public class EventController {
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseEntity<String> deleteEvent(@PathVariable("id") int id) {
+	public ResponseEntity<String> deleteEvent(@PathVariable("id") Long id) {
 		System.out.println("Id to be queried" + id);
 		this.eventService.deleteEvent(id);
 		return new ResponseEntity<String>(HttpStatus.OK);

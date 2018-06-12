@@ -16,53 +16,41 @@
  *  San Diego, CA 92128
  *  www.hospira.com
  *******************************************************************************/
-package com.learningwithrakesh.EventManagement.entity;
+package com.learningwithrakesh.EventManagement.repository;
 
-import java.io.Serializable;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import java.util.List;
 
 /**
  *
  */
-@MappedSuperclass
-public class BaseDomain implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private Long whenCreated;
-	private Long whenLastUpdated;
+public interface CurdRepository<T> {
+	/**
+	 * get all as list
+	 * 
+	 * @return
+	 */
+	public List<T> findAll();
 
-	public Long getId() {
-		return id;
-	}
+	/**
+	 * save and flush to the db
+	 * 
+	 * @param event
+	 * @return
+	 */
+	public T save(T event);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	/**
+	 * get on by id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public T getOne(long id);
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Long getWhenCreated() {
-		return whenCreated;
-	}
-
-	public void setWhenCreated(Long whenCreated) {
-		this.whenCreated = whenCreated;
-	}
-
-	public Long getWhenLastUpdated() {
-		return whenLastUpdated;
-	}
-
-	public void setWhenLastUpdated(Long whenLastUpdated) {
-		this.whenLastUpdated = whenLastUpdated;
-	}
-
+	/**
+	 * delete the records by id
+	 * 
+	 * @param id
+	 */
+	public void deleteById(long id);
 }
