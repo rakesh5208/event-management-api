@@ -64,6 +64,7 @@ public class EventController {
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public Event createEvent(@RequestBody Event event) {
+		System.out.println(event.getColors());
 		return this.eventService.createEvent(event);
 	}
 	

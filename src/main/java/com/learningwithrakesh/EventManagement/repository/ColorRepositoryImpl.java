@@ -26,59 +26,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.learningwithrakesh.EventManagement.entity.Color;
-import com.learningwithrakesh.EventManagement.entity.Event;
 
 /**
  *
  */
 @Component
-public class EventRepositoryImpl implements EventRepository {
+public class ColorRepositoryImpl implements ColorRepository {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	@Autowired
-	ColorRepository colorRepo;
-	
+	/* (non-Javadoc)
+	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#findAll()
+	 */
 	@Override
-	public List<Event> findAll() {
-
-		Session openSession = sessionFactory.openSession();
-		openSession.beginTransaction();
-		List<Event> eventList = openSession.createQuery("from Event").list();
-
-		openSession.getTransaction().commit();
-		openSession.close();
-		return eventList;
-	}
-	@Override
-	public Event save(Event event) {
-		Session openSession = sessionFactory.openSession();
-		openSession.beginTransaction();
-
-		Long savedEventId = (Long) openSession.save(event);
-		for (Color c : event.getColors()) {
-			this.colorRepo.save(c);
-		}
-		openSession.getTransaction().commit();
-		Event savedEvent = (Event) openSession.load(Event.class, savedEventId);
-		openSession.close();
-		return savedEvent;
+	public List<Color> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#save(java.lang.Object)
+	 */
 	@Override
-	public Event getOne(long id) {
-		Session openSession = sessionFactory.openSession();
-		openSession.beginTransaction();
-		Event event = (Event) openSession.byId(Event.class).load(id);
-		openSession.getTransaction().commit();
-		openSession.close();
-		return event;
+	public Color save(Color color) {
+		Session currentSession = sessionFactory.openSession();
+		currentSession.beginTransaction();
+		Long id = (Long) currentSession.save(color);
+		currentSession.getTransaction().commit();
+		Color createdColor = (Color) currentSession.load(Color.class, id);
+		currentSession.close();
+		return createdColor;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#getOne(long)
+	 */
+	@Override
+	public Color getOne(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#deleteById(long)
+	 */
 	@Override
 	public void deleteById(long id) {
-
+		// TODO Auto-generated method stub
+		
 	}
-
 
 }

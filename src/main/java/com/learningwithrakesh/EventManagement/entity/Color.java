@@ -18,48 +18,48 @@
  *******************************************************************************/
 package com.learningwithrakesh.EventManagement.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
 
 /**
  *
  */
 @SuppressWarnings("javadoc")
-@MappedSuperclass
-public class BaseDomain implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private Long whenCreated;
-	private Long whenLastUpdated;
+@Entity
+public class Color extends BaseDomain {
+	private int red;
+	private int green;
+	private int blue;
 
-	public Long getId() {
-		return id;
+	public Color() {
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public int getRed() {
+		return red;
 	}
 
-	public Long getWhenCreated() {
-		return whenCreated;
+	public void setRed(int red) {
+		this.red = red;
 	}
 
-	public void setWhenCreated(Long whenCreated) {
-		this.whenCreated = whenCreated;
+	public int getGreen() {
+		return green;
 	}
 
-	public Long getWhenLastUpdated() {
-		return whenLastUpdated;
+	public void setGreen(int green) {
+		this.green = green;
 	}
 
-	public void setWhenLastUpdated(Long whenLastUpdated) {
-		this.whenLastUpdated = whenLastUpdated;
+	public int getBlue() {
+		return blue;
+	}
+
+	public void setBlue(int blue) {
+		this.blue = blue;
+	}
+
+	@Override
+	public String toString() {
+		return "Color [red=" + red + ", green=" + green + ", blue=" + blue + "]";
 	}
 
 }
