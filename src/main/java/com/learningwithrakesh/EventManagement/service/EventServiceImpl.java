@@ -55,7 +55,6 @@ public class EventServiceImpl implements EventService {
 	 */
 	@Override
 	public Event getEvent(Long id) {
-		System.out.println(this.eventRepo.getOne(id).toString());
 		return this.eventRepo.getOne(id);
 	}
 

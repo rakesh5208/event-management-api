@@ -17,18 +17,14 @@ public class ColorRepositoryImpl implements ColorRepository {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	/* (non-Javadoc)
-	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#findAll()
-	 */
+
 	@Override
 	public List<Color> findAll() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#save(java.lang.Object)
-	 */
+
 	@Override
 	public Color save(Color color) {
 		Session currentSession = sessionFactory.openSession();
@@ -40,21 +36,17 @@ public class ColorRepositoryImpl implements ColorRepository {
 		return createdColor;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#getOne(long)
-	 */
+
 	@Override
 	public Color getOne(long id) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.learningwithrakesh.EventManagement.repository.CurdRepository#deleteById(long)
-	 */
+
 	@Override
 	public void deleteById(long id) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

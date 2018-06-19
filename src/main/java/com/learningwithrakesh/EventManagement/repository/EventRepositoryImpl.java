@@ -20,26 +20,30 @@ public class EventRepositoryImpl implements EventRepository {
 	SessionFactory sessionFactory;
 	@Autowired
 	ColorRepository colorRepo;
-	
+
 	@Override
 	public List<Event> findAll() {
 
 		Session openSession = sessionFactory.openSession();
 		openSession.beginTransaction();
 		List<Event> eventList = openSession.createQuery("from Event").list();
-
 		openSession.getTransaction().commit();
 		openSession.close();
 		return eventList;
 	}
+
 	@Override
 	public Event save(Event event) {
 		Session openSession = sessionFactory.openSession();
 		openSession.beginTransaction();
-
-		Long savedEventId = (Long) openSession.save(event);
-		for (Color c : event.getColors()) {
-			this.colorRepo.save(c);
+		Long savedEventId = event.getId();
+		if (savedEventId != null) {
+			openSession.saveOrUpdate(event);
+		} else {
+			savedEventId = (Long) openSession.save(event);
+			for (Color c : event.getColors()) {
+				this.colorRepo.save(c);
+			}
 		}
 		openSession.getTransaction().commit();
 		Event savedEvent = (Event) openSession.load(Event.class, savedEventId);
@@ -59,8 +63,12 @@ public class EventRepositoryImpl implements EventRepository {
 
 	@Override
 	public void deleteById(long id) {
-
+		Session openSession = sessionFactory.openSession();
+		openSession.beginTransaction();
+		Event event = (Event) openSession.load(Event.class, id);
+		openSession.delete(event);
+		openSession.getTransaction().commit();
+		openSession.close();
 	}
-
 
 }
