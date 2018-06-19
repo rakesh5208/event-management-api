@@ -41,9 +41,6 @@ public class EventRepositoryImpl implements EventRepository {
 			openSession.saveOrUpdate(event);
 		} else {
 			savedEventId = (Long) openSession.save(event);
-			for (Color c : event.getColors()) {
-				this.colorRepo.save(c);
-			}
 		}
 		openSession.getTransaction().commit();
 		Event savedEvent = (Event) openSession.load(Event.class, savedEventId);

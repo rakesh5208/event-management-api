@@ -3,6 +3,7 @@ package com.learningwithrakesh.EventManagement.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,10 +27,10 @@ public class Event extends BaseDomain {
 
 	private int duration;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Color> colors = new ArrayList<>();
 
-	@OneToMany(mappedBy = "event")
+	@OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 
 	/*
