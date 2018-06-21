@@ -26,7 +26,7 @@ public class CommentRepositoryImpl implements CommentRepo {
 	public List<Comment> findAll(long eventId) {
 		Session openSession = sessionFactory.openSession();
 		openSession.beginTransaction();
-		List<Comment> comments = openSession.createQuery("from Comment where event_id = :eventId")
+		List<Comment> comments = openSession.createQuery("from Comment where event_id = :eventId and reply_id is null")
 				.setParameter("eventId", eventId).list();
 		openSession.getTransaction().commit();
 		openSession.close();
@@ -46,5 +46,43 @@ public class CommentRepositoryImpl implements CommentRepo {
 		openSession.close();
 		return savedComment;
 	}
+	@Override
+	public Comment getOne(long id) {
+		Session openSession = sessionFactory.openSession();
+		openSession.beginTransaction();
+		Comment comment = (Comment) openSession.byId(Comment.class).load(id);
+		openSession.getTransaction().commit();
+		openSession.close();
+		return comment;
+	}
+
+	@Override
+	public Comment saveReplyComment(Comment comment, long eventId, long onCommentId) {
+		Event event = this.eventRepo.getOne(eventId);
+		Comment replyOnComment = this.getOne(onCommentId);
+		Session openSession = sessionFactory.openSession();
+		openSession.beginTransaction();
+		comment.setWhenCreated(System.currentTimeMillis());
+		comment.setEvent(event);
+		comment.setReply(replyOnComment);
+		Long commentId = (Long) openSession.save(comment);
+		openSession.getTransaction().commit();
+		Comment savedComment = (Comment) openSession.load(Comment.class, commentId);
+		openSession.close();
+		return savedComment;
+	}
+
+	@Override
+	public List<Comment> getAllRepliesOnComment(long eventId, long commentId) {
+		Session openSession = this.sessionFactory.openSession();
+		openSession.beginTransaction();
+		List<Comment> replies = openSession.createQuery("from Comment where event_id= :eventId and reply_id = :replyId")
+				.setParameter("eventId", eventId)
+				.setParameter("replyId", commentId).list();
+		openSession.getTransaction().commit();
+		openSession.close();
+		return replies;
+	}
+
 
 }

@@ -30,4 +30,8 @@ public interface CommentService {
 
 	public Comment addComment(Comment comment, long rootId);
 
+	public List<Comment> getAllRepliesOnComment(long rootId, long commentId);
+
+	public Comment replyOnComment(Comment comment, long rootId, long onCommentId);
+
 }

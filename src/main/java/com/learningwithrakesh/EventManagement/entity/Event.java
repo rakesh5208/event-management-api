@@ -77,14 +77,6 @@ public class Event extends BaseDomain {
 		this.colors = colors;
 	}
 
-	// public List<Comment> getComments() {
-	// return comments;
-	// }
-	//
-	// public void setComments(List<Comment> comments) {
-	// this.comments = comments;
-	// }
-
 	@Override
 	public String toString() {
 		return "Event [description=" + description + ", title=" + title + ", startDateAndTime=" + startDateAndTime

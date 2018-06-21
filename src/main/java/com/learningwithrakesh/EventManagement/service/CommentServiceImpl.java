@@ -45,4 +45,15 @@ public class CommentServiceImpl implements CommentService {
 	public Comment addComment(Comment comment, long rootId) {
 		return commentRepo.save(comment, rootId);
 	}
+
+	@Override
+	public Comment replyOnComment(Comment comment, long rootId, long onCommentId) {
+		return this.commentRepo.saveReplyComment(comment, rootId, onCommentId);
+	}
+
+	@Override
+	public List<Comment> getAllRepliesOnComment(long rootId, long commentId) {
+		return this.commentRepo.getAllRepliesOnComment(rootId, commentId);
+	}
+
 }

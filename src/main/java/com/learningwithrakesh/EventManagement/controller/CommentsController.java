@@ -38,4 +38,18 @@ public class CommentsController {
 	public Comment addComment(@RequestBody Comment comment, @PathVariable("rootId") long rootId) {
 		return this.commentService.addComment(comment, rootId);
 	}
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Comment> getAllReplyOnComment(@PathVariable("rootId") long rootId,
+			@PathVariable("id") long onCommentId) {
+		return this.commentService.getAllRepliesOnComment(rootId, onCommentId);
+	}
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public Comment replyOnComment(@RequestBody Comment comment, @PathVariable("rootId") long rootId,
+			@PathVariable("id") long onCommentId) {
+		return this.commentService.replyOnComment(comment, rootId, onCommentId);
+	}
 }

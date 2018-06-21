@@ -1,11 +1,14 @@
 package com.learningwithrakesh.EventManagement.entity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @SuppressWarnings("javadoc")
 @Entity
@@ -18,6 +21,12 @@ public class Comment extends BaseDomain {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Event event;
+
+	@ManyToOne()
+	private Comment reply;
+
+	@OneToMany(mappedBy = "reply")
+	private List<Comment> replies = new ArrayList<>();
 
 	public Comment() {
 
@@ -47,9 +56,26 @@ public class Comment extends BaseDomain {
 		this.event = event;
 	}
 
+	// public Comment getReply() {
+	// return reply;
+	// }
+
+	public void setReply(Comment reply) {
+		this.reply = reply;
+	}
+
+	// public List<Comment> getReplies() {
+	// return replies;
+	// }
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
+	}
+
 	@Override
 	public String toString() {
-		return "Comment [message=" + Arrays.toString(message) + ", author=" + author + "]";
+		return "Comment [message=" + Arrays.toString(message) + ", author=" + author + ", event=" + event + ", reply="
+				+ reply + ", replies=" + replies + "]";
 	}
 
 }
