@@ -7,7 +7,7 @@ import com.learningwithrakesh.EventManagement.entity.Comment;
 /**
  *
  */
-public interface CommentRepo {
+public interface CommentRepo{
 
 	public List<Comment> findAll(long eventId);
 

@@ -51,7 +51,6 @@ public class PersistentConfig {
 		properties.setProperty("hibernate.dialect", env.getRequiredProperty("spring.jpa.properties.hibernate.dialect"));
 		properties.setProperty("hibernate.ddl-auto", env.getRequiredProperty("spring.jpa.hibernate.ddl-auto"));
 		properties.setProperty("hibernate.show_sql", env.getRequiredProperty("spring.jpa.show-sql"));
-
 		properties.setProperty("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		System.out.println(properties.toString());
 		return properties;

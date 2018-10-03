@@ -1,9 +1,13 @@
 package com.learningwithrakesh.EventManagement.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -16,7 +20,8 @@ public class Privilege {
 	private long id;
 
 	private String name;
-
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Role role;
 	public Privilege() {
 	}
 
@@ -34,6 +39,14 @@ public class Privilege {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
